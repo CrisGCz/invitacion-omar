@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitación Cumpleaños Basquetbol</title>
+  <style>
+    :root{
+      --naranja:#f47c20;
+      --naranja-osc:#d96208;
+      --negro:#0e0e10;
+      --gris:#17181c;
+      --blanco:#ffffff;
+      --gris-texto:#d8d8d8;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,#0b0b0d,#121318,#0b0b0d);
+      color:var(--blanco);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+
+    .hero{
+      min-height:100vh;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:32px 18px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at top, rgba(244,124,32,.25), transparent 30%),
+        linear-gradient(180deg, rgba(244,124,32,.20), rgba(0,0,0,.35)),
+        url('imagenes/portada.jpg') center/cover no-repeat;
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.65));
+    }
+
+    .court-lines::before,
+    .court-lines::after{
+      content:"";
+      position:absolute;
+      inset:auto 50% 0 50%;
+      transform:translateX(-50%);
+      width:2px;
+      height:100%;
+      background:rgba(255,255,255,.10);
+    }
+
+    .court-lines::after{
+      inset:50% auto auto 50%;
+      width:260px;
+      height:260px;
+      border:2px solid rgba(255,255,255,.10);
+      border-radius:50%;
+      transform:translate(-50%,-50%);
+      background:none;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:850px;
+    }
+
+    .tag{
+      display:inline-block;
+      background:rgba(244,124,32,.15);
+      border:1px solid rgba(244,124,32,.45);
+      color:#ffd5b1;
+      padding:10px 18px;
+      border-radius:999px;
+      font-weight:bold;
+      letter-spacing:.5px;
+      margin-bottom:16px;
+      backdrop-filter: blur(4px);
+    }
+
+    .ball{
+      font-size:72px;
+      display:inline-block;
+      animation:bounce 1s infinite alternate ease-in-out;
+      filter:drop-shadow(0 10px 14px rgba(244,124,32,.3));
+      margin-bottom:10px;
+    }
+
+    @keyframes bounce{
+      from{transform:translateY(0) rotate(0deg)}
+      to{transform:translateY(18px) rotate(8deg)}
+    }
+
+    h1{
+      font-size:clamp(2.5rem, 8vw, 5.3rem);
+      margin:0;
+      line-height:1;
+      text-transform:uppercase;
+      text-shadow:0 8px 30px rgba(0,0,0,.45);
+    }
+
+    .nombre{
+      color:var(--naranja);
+      display:block;
+      margin-top:14px;
+    }
+
+    .hero p{
+      font-size:clamp(1rem, 2.8vw, 1.3rem);
+      color:#efefef;
+      max-width:680px;
+      margin:18px auto 0;
+      line-height:1.6;
+    }
+
+    .btns{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .btn{
+      border:none;
+      text-decoration:none;
+      cursor:pointer;
+      padding:15px 24px;
+      border-radius:14px;
+      font-weight:bold;
+      font-size:1rem;
+      transition:.25s ease;
+      box-shadow:0 12px 24px rgba(0,0,0,.22);
+    }
+
+    .btn-primary{
+      background:var(--naranja);
+      color:#111;
+    }
+
+    .btn-primary:hover{transform:translateY(-2px); background:#ff8f3b}
+
+    .btn-secondary{
+      background:rgba(255,255,255,.08);
+      color:var(--blanco);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .btn-secondary:hover{transform:translateY(-2px); background:rgba(255,255,255,.13)}
+
+    .scroll-note{
+      margin-top:34px;
+      font-size:.95rem;
+      opacity:.9;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+
+    .section{
+      padding:72px 18px;
+    }
+
+    .container{
+      max-width:1050px;
+      margin:0 auto;
+    }
+
+    .title{
+      text-align:center;
+      font-size:clamp(1.8rem, 5vw, 2.6rem);
+      margin:0 0 14px;
+      text-transform:uppercase;
+    }
+
+    .subtitle{
+      text-align:center;
+      color:var(--gris-texto);
+      max-width:700px;
+      margin:0 auto 34px;
+      line-height:1.6;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:18px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;
+      padding:24px 20px;
+      text-align:center;
+      box-shadow:0 18px 34px rgba(0,0,0,.20);
+      backdrop-filter:blur(6px);
+    }
+
+    .card .icon{
+      font-size:2rem;
+      margin-bottom:10px;
+    }
+
+    .card h3{
+      margin:10px 0 8px;
+      color:var(--naranja);
+      font-size:1.2rem;
+    }
+
+    .card p{
+      margin:0;
+      line-height:1.6;
+      color:#f0f0f0;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:18px;
+    }
+
+    .photo-card{
+      background:var(--gris);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 18px 34px rgba(0,0,0,.22);
+      transform:translateY(24px);
+      opacity:0;
+      transition:all .7s ease;
+    }
+
+    .photo-card.visible{
+      transform:translateY(0);
+      opacity:1;
+    }
+
+    .photo-card img{
+      width:100%;
+      height:330px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .photo-caption{
+      padding:16px;
+      text-align:center;
+      background:linear-gradient(180deg, rgba(244,124,32,.08), rgba(255,255,255,.02));
+    }
+
+    .photo-caption h4{
+      margin:0 0 8px;
+      color:var(--naranja);
+      font-size:1.08rem;
+    }
+
+    .photo-caption p{
+      margin:0;
+      color:#efefef;
+      line-height:1.5;
+      font-size:.96rem;
+    }
+
+    .countdown{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(70px,1fr));
+      gap:12px;
+      max-width:760px;
+      margin:28px auto 0;
+    }
+
+    .time-box{
+      background:linear-gradient(180deg, rgba(244,124,32,.12), rgba(255,255,255,.03));
+      border:1px solid rgba(244,124,32,.18);
+      border-radius:22px;
+      padding:22px 12px;
+      text-align:center;
+    }
+
+    .time-box strong{
+      display:block;
+      font-size:clamp(1.5rem, 5vw, 2.4rem);
+      color:var(--naranja);
+    }
+
+    .time-box span{
+      display:block;
+      margin-top:8px;
+      color:#f4f4f4;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      font-size:.84rem;
+    }
+
+    .location-box{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      padding:22px;
+      text-align:center;
+    }
+
+    .map-frame{
+      width:100%;
+      height:320px;
+      border:0;
+      border-radius:18px;
+      margin-top:18px;
+    }
+
+    .footer{
+      padding:56px 18px 80px;
+      text-align:center;
+      background:linear-gradient(180deg, transparent, rgba(244,124,32,.07));
+    }
+
+    .footer p{
+      color:#e8e8e8;
+      line-height:1.7;
+      max-width:700px;
+      margin:0 auto 18px;
+    }
+
+    .music-note{
+      margin-top:14px;
+      color:#ffcfad;
+      font-size:.95rem;
+    }
+
+    .floating-music{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      z-index:30;
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      border:none;
+      background:var(--naranja);
+      color:#111;
+      font-size:1.3rem;
+      font-weight:bold;
+      cursor:pointer;
+      box-shadow:0 14px 28px rgba(0,0,0,.28);
+    }
+
+    .rsvp-link{
+      word-break:break-word;
+    }
+
+    @media (max-width:640px){
+      .countdown{grid-template-columns:repeat(2,1fr)}
+      .photo-card img{height:280px}
+      .hero{background-position:center top}
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    CAMBIA SOLO ESTA RUTA SI TU ARCHIVO TIENE OTRO NOMBRE
+    EJEMPLO:
+    audio/musica.mp3
+    audio/cancion.mp3
+    audio/audio.mp3
+  -->
+  <audio id="bgMusic" autoplay loop preload="auto">
+    <source src="audio/BAD BUNNY - BAILE INoLVIDABLE (Video Oficial)  DeBÍ TiRAR MáS FOToS.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <button class="floating-music" id="musicBtn" aria-label="Mutear o activar sonido">🔊</button>
+
+  <header class="hero">
+    <div class="overlay"></div>
+    <div class="court-lines"></div>
+
+    <div class="hero-content">
+      <div class="tag">🏀 INVITACIÓN DIGITAL</div>
+      <div class="ball">🏀</div>
+      <h1>
+        Cumpleaños de
+        <span class="nombre">OMAR</span>
+      </h1>
+      <p>
+        Prepárate para un festejo lleno de energía, canastas, fotos increíbles,
+        música y mucha diversión. Baja para ver todos los detalles del gran día.
+      </p>
+
+      <div class="btns">
+        <a href="#detalles" class="btn btn-primary">Ver invitación</a>
+        <a href="#fotos" class="btn btn-secondary">Ver galería</a>
+      </div>
+
+      <div class="scroll-note">Desliza hacia abajo</div>
+    </div>
+  </header>
+
+  <section class="section" id="detalles">
+    <div class="container">
+      <h2 class="title">Detalles del partido</h2>
+      <p class="subtitle">
+        Edita estos datos con la información real del cumpleaños.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon">📅</div>
+          <h3>Fecha</h3>
+          <p>25 de abril de 2026</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">⏰</div>
+          <h3>Hora</h3>
+          <p>5:00 PM</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📍</div>
+          <h3>Lugar</h3>
+          <p>Cancha Los Campeones<br>Veracruz, México</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🎉</div>
+          <h3>Habrá</h3>
+          <p>Basquet, música, botanas, pastel y muchas sorpresas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="title">Cuenta regresiva</h2>
+      <p class="subtitle">
+        Cambia la fecha dentro del código para que el contador llegue al día del evento.
+      </p>
+
+      <div class="countdown">
+        <div class="time-box"><strong id="days">00</strong><span>Días</span></div>
+        <div class="time-box"><strong id="hours">00</strong><span>Horas</span></div>
+        <div class="time-box"><strong id="minutes">00</strong><span>Minutos</span></div>
+        <div class="time-box"><strong id="seconds">00</strong><span>Segundos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="fotos">
+    <div class="container">
+      <h2 class="title">Momentos del cumpleañero</h2>
+      <p class="subtitle">
+        Aquí puedes poner varias imágenes del cumpleañero jugando basquetbol para que se vean conforme la gente va bajando.
+      </p>
+
+      <div class="gallery-grid">
+        <div class="photo-card reveal">
+          <img src="imagenes/foto1.jpg" alt="Foto 1 del cumpleañero jugando basquetbol">
+          <div class="photo-caption">
+            <h4>Jugando con todo</h4>
+            <p>Una de sus mejores jugadas en la cancha.</p>
+          </div>
+        </div>
+
+        <div class="photo-card reveal">
+          <img src="imagenes/foto2.jpg" alt="Foto 2 del cumpleañero jugando basquetbol">
+          <div class="photo-caption">
+            <h4>Pasión por el juego</h4>
+            <p>Su energía y estilo siempre brillan en cada partido.</p>
+          </div>
+        </div>
+
+        <div class="photo-card reveal">
+          <img src="imagenes/foto3.jpg" alt="Foto 3 del cumpleañero jugando basquetbol">
+          <div class="photo-caption">
+            <h4>Rumbo a la canasta</h4>
+            <p>Una foto perfecta para presumir su talento.</p>
+          </div>
+        </div>
+
+        <div class="photo-card reveal">
+          <img src="imagenes/foto4.jpg" alt="Foto 4 del cumpleañero jugando basquetbol">
+          <div class="photo-caption">
+            <h4>Modo campeón</h4>
+            <p>Otra imagen especial para seguir contando su historia.</p>
+          </div>
+        </div>
+
+        <div class="photo-card reveal">
+          <img src="imagenes/foto5.jpg" alt="Foto 5 del cumpleañero jugando basquetbol">
+          <div class="photo-caption">
+            <h4>Gran momento</h4>
+            <p>Puedes seguir agregando más fotos si quieres.</p>
+          </div>
+        </div>
+
+        <div class="photo-card reveal">
+          <img src="imagenes/foto6.jpg" alt="Foto 6 del cumpleañero jugando basquetbol">
+          <div class="photo-caption">
+            <h4>Listo para festejar</h4>
+            <p>Ideal para cerrar la galería con una imagen memorable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="title">Ubicación</h2>
+      <p class="subtitle">
+        Puedes dejar solo la dirección o pegar aquí tu mapa de Google Maps.
+      </p>
+
+      <div class="location-box">
+        <h3 style="margin-top:0; color:var(--naranja); font-size:1.35rem;">Cancha Los Campeones</h3>
+        <p style="margin:0; line-height:1.7; color:#f1f1f1;">
+          Calle Ejemplo #123, Veracruz, México
+        </p>
+
+        <iframe
+          class="map-frame"
+          src="https://www.google.com/maps?q=Veracruz%20Mexico&z=13&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="footer">
+    <div class="container">
+      <h2 class="title">Confirma tu asistencia</h2>
+      <p>
+        Nos encantará verte en este día tan especial. Presiona el botón y envía tu confirmación por WhatsApp.
+      </p>
+
+      <a class="btn btn-primary rsvp-link" href="https://wa.me/5210000000000?text=Hola%2C%20confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Omar%20%F0%9F%8F%80" target="_blank">
+        Confirmar por WhatsApp
+      </a>
+
+      <div class="music-note">
+        El botón de la esquina sirve para mutear o activar la canción.
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // ==============================
+    // FECHA DEL EVENTO
+    // ==============================
+    const eventDate = new Date("Apr 25, 2026 17:00:00").getTime();
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    function updateCountdown(){
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if(distance <= 0){
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ==============================
+    // AUDIO
+    // Intenta reproducir al abrir.
+    // En varios navegadores móviles esto puede ser bloqueado.
+    // El botón funciona como mute/unmute.
+    // ==============================
+    const bgMusic = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+
+    bgMusic.muted = false;
+    bgMusic.volume = 1;
+
+    function updateMusicIcon() {
+      musicBtn.textContent = bgMusic.muted ? '🔇' : '🔊';
+    }
+
+    async function tryAutoplay() {
+      try {
+        await bgMusic.play();
+      } catch (e) {
+        // Algunos navegadores bloquean autoplay con sonido
+      }
+      updateMusicIcon();
+    }
+
+    window.addEventListener('load', tryAutoplay);
+
+    musicBtn.addEventListener('click', async () => {
+      try {
+        if (bgMusic.paused) {
+          await bgMusic.play();
+        }
+        bgMusic.muted = !bgMusic.muted;
+        updateMusicIcon();
+      } catch (error) {
+        alert('No se pudo reproducir la música. Revisa que el archivo exista y que la ruta sea correcta.');
+      }
+    });
+
+    // ==============================
+    // ANIMACION AL HACER SCROLL
+    // ==============================
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.18 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
